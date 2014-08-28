@@ -5,9 +5,13 @@ using tink.CoreApi;
 abstract Point(Pair<Float, Float>) {
   public var x(get, never):Float;
   public var y(get, never):Float;
+  public var length(get, never):Float;
+  public var angle(get, never):Float;
   
   inline function get_x() return this.a;
   inline function get_y() return this.b;
+  inline function get_angle() return Math.atan2(y, x);
+  inline function get_length() return Math.sqrt(x * x + y * y);
   
   public inline function new(x, y) this = new Pair(x, y);
   
