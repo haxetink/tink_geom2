@@ -25,5 +25,8 @@ abstract Point(Pair<Float, Float>) {
     return new Point(a.x - b.x, a.y - b.y);
 
   @:op(-p) static public inline function invert(p:Point)
-    return new Point(-p.x, -p.y);
+    return new Point( -p.x, -p.y);
+    
+  @:op(p * f) static public inline function scale(p:Point, f:Float)
+    return new Point(p.x * f, p.y * f);
 }
