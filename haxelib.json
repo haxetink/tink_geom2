@@ -1,12 +1,21 @@
 {
 	"name": "tink_geom2",
 	"license": "MIT",
-	"tags": ["tink", "geom", "point", "algebra", "2d", "css"],
+	"tags": [
+		"tink",
+		"geom",
+		"point",
+		"algebra",
+		"2d",
+		"css"
+	],
 	"classPath": "src",
 	"description": "Small library for 2d transformations, mostly intended for CSS.",
-	"contributors": ["back2dos"],
-	"releasenote": "Initial release.",
-	"version": "0.1.0",
+	"contributors": [
+		"back2dos"
+	],
+	"releasenote": "Minor tweaks to Point.",
+	"version": "0.1.1",
 	"url": "http://haxetink.org/tink_geom2",
 	"dependencies": {
 		"tink_core": ""
