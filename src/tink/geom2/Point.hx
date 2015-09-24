@@ -17,15 +17,15 @@ abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float>
   public inline function new(x, y) this = new Pair(x, y);
   
   public inline function normalize(l:Float = 1):Point 
-		return scale(this, l / length);	  
+    return scale(this, l / length);	  
   
-	public inline function dot(that:Point):Float
-		return x * that.x + y * that.y; 
+  public inline function dot(that:Point):Float
+    return x * that.x + y * that.y; 
 
-	public inline function isLeftOf(from:Point, to:Point)
-		return (to.x - from.x) * (y - from.y) > (to.y - from.y) * (x - from.x);  
+  public inline function isLeftOf(from:Point, to:Point)
+    return (to.x - from.x) * (y - from.y) > (to.y - from.y) * (x - from.x);  
 		
-	@:to public inline function toString() 
+  @:to public inline function toString() 
     return '($x, $y)';    
   
   @:op(a + b) static public inline function add(a:Point, b:Point)
@@ -37,6 +37,9 @@ abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float>
   @:op(-p) static public inline function invert(p:Point)
     return new Point( -p.x, -p.y);
     
-  @:op(p * f) static public inline function scale(p:Point, f:Float)
+  @:commutative @:op(p * f) static public inline function scale(p:Point, f:Float)
     return new Point(p.x * f, p.y * f);
+  
+  @:from static inline function ofObj(obj: { var x(default, null):Float; var y(default, null):Float; }):Point
+	return new Point(obj.x, obj.y);
 }
