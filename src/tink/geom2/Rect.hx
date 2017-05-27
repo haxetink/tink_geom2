@@ -14,6 +14,7 @@ class RectData {
   }
 }
 
+@:pure
 @:forward
 abstract Rect(RectData) from RectData {
   

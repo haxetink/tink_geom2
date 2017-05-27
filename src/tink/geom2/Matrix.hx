@@ -2,6 +2,7 @@ package tink.geom2;
 
 import Math.*;
 
+@:pure
 abstract Matrix({ a: Float, b: Float, c: Float, d:Float, tx: Float, ty:Float }) {
   public var a(get, never):Float;
   public var b(get, never):Float;
