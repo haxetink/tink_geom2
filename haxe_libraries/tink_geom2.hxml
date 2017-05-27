@@ -1,0 +1,4 @@
+-D tink_geom2=0.1.1
+-cp src
+
+-lib tink_core

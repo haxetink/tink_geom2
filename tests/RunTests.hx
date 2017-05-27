@@ -2,9 +2,10 @@ package ;
 
 import tink.geom2.Matrix;
 import tink.geom2.Point;
+import tink.geom2.Rect;
 
 class RunTests {
   static function main() {
-    trace("It compiles, let's ship it!");
+    travix.Logger.exit(0);
   }
 }

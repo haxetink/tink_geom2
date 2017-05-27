@@ -1,0 +1,6 @@
+-cp src
+-js nope
+-lib tink_core
+--no-output
+tink.geom2.Point
+tink.geom2.Matrix
