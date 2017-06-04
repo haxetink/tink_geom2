@@ -14,8 +14,8 @@
 	"contributors": [
 		"back2dos"
 	],
-	"releasenote": "Minor tweaks to Point.",
-	"version": "0.1.1",
+	"releasenote": "Fleshed out API.",
+	"version": "0.2.0",
 	"url": "http://haxetink.org/tink_geom2",
 	"dependencies": {
 		"tink_core": ""
