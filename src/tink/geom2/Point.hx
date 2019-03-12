@@ -2,7 +2,7 @@ package tink.geom2;
 
 import tink.core.Pair;
 
-@:pure 
+@:pure
 abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float> {
   public var x(get, never):Float;
   public var y(get, never):Float;
