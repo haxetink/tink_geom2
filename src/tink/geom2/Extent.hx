@@ -2,6 +2,7 @@ package tink.geom2;
 
 using tink.CoreApi;
 
+@:pure
 abstract Extent(Pair<Float, Float>) {
 
   public var start(get, never):Float;

@@ -2,6 +2,7 @@ package tink.geom2;
 
 using tink.CoreApi;
 
+@:pure
 abstract Size(Pair<Float, Float>) {
 
   public var width(get, never):Float;
