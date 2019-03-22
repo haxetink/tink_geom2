@@ -14,8 +14,8 @@
 	"contributors": [
 		"back2dos"
 	],
-	"releasenote": "Rectangle fitting algorithm.",
-	"version": "0.2.1",
+	"releasenote": "Mark Extent, Point and Size as pure",
+	"version": "0.2.2",
 	"url": "http://haxetink.org/tink_geom2",
 	"dependencies": {
 		"tink_core": ""
