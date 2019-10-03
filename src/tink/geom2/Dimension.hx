@@ -6,13 +6,13 @@ package tink.geom2;
 
   @:op(!a)
   public inline function flip():Dimension
-    return switch this {
+    return switch (cast this:Dimension) {
       case Vertical: Horizontal;
       default: Vertical;
     }
 
   public inline function rect(normal, sidewards)
-    return switch this {
+    return switch (cast this:Dimension) {
       case Vertical: new Rect(sidewards, normal);
       default: new Rect(normal, sidewards);
     }

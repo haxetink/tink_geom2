@@ -1,0 +1,4 @@
+tests.hxml
+-lib travix
+-lib tink_geom2
+--js bin/test.js

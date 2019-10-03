@@ -6,32 +6,32 @@ package tink.geom2;
   var End = 'end';
 
   public inline function extent(start:Float, end:Float):Extent 
-    return switch this {
+    return switch (cast this:Position) {
       case End: new Extent(end, start);
       default: new Extent(start, end);
     }
 
   public function isBeyond(pos:Float, bound:Float)
-    return switch this {
+    return switch (cast this:Position) {
       case End: pos > bound;
       default: pos < bound;
     }
 
   public inline function closest(a:Float, b:Float)
-    return switch this {
+    return switch (cast this:Position) {
       case End: Math.min(a, b);
       default: Math.max(a, b);
     }
 
   public inline function expand(value:Float, delta:Float):Float
-    return value + switch this {
+    return value + switch (cast this:Position) {
       case End: delta;
       default: -delta;
     }
 
   @:op(!a) 
   public inline function flip():Position
-    return switch this {
+    return switch (cast this:Position) {
       case End: Start;
       default: End;
     }
