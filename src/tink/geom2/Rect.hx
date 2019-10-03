@@ -61,6 +61,15 @@ abstract Rect(Pair<Extent, Extent>) {
       this != null && that != null 
       && horizontal.intersects(that.horizontal)
       && vertical.intersects(that.vertical);
+
+  public inline function contains(that:Rect)
+    return
+      this != null && that != null
+      && horizontal.contains(that.horizontal)
+      && vertical.contains(that.vertical);
+
+  public function expand(h:Float, v:Float) 
+    return horizontal.expand(h) * vertical.expand(v);
     
   @:from static public inline function ofJslike(r:Jslike)
     return new Rect(

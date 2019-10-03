@@ -23,6 +23,12 @@ abstract Extent(Pair<Float, Float>) {
   public inline function intersects(that:Extent) 
     return Math.max(start, that.start) < Math.min(end, that.end);
 
+  public inline function contains(that:Extent) 
+    return start <= that.start && end >= that.end;
+
+  public function expand(by:Float)
+    return new Extent(start - by, end + by);
+
   @:to public inline function toString() 
     return '($start - $end)';
 
