@@ -1,5 +1,3 @@
-import tink.geom2.Point;
-
 @:asserts
 class Points {
   public function new() {
@@ -32,14 +30,12 @@ class Points {
 
     eq(grid[1][1].length, 0);
 
-
     for (x in 0...3)
       for (y in 0...3)
         eq(grid[x][y].normalize(10).length, if (x * y == 1) 0 else 10);
 
     function angle(x, y, expect:Float, ?pos)
       eq(grid[x][y].angle, expect * Math.PI, pos);
-
 
     angle(0, 0, -3 / 4);
     angle(0, 1, 1);
@@ -58,8 +54,18 @@ class Points {
 
   public function equality() {
     for (x in 0...3)
+      for (y in 0...3) {
+        var p = grid[x][y];
+        asserts.assert(p == new Point(p.x, p.y));
+      }
+
+    return asserts.done();
+  }
+
+  public function inversion() {
+    for (x in 0...3)
       for (y in 0...3)
-        asserts.assert(grid[2-x][2-y] == -grid[x][y], '${grid[2-x][2-y]} == ${-grid[x][y]}');
+        asserts.assert(grid[2-x][2-y] == -grid[x][y]);
 
     return asserts.done();
   }

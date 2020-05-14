@@ -11,7 +11,8 @@ class RunTests {
   static function main() {
     Runner.run(
       TestBatch.make(
-        new Points()
+        new Points(),
+        new Extents()
       )
     ).handle(Runner.exit);
   }
