@@ -26,13 +26,19 @@ abstract Size(Pair<Float, Float>) {
   public function contains(that:Size)
     return width >= that.width && height > that.height;
 
-  @:commutative 
-  @:op(a * b) 
+  @:commutative
+  @:op(a * b)
   static inline function scale(size:Size, factor:Float)
     return new Size(size.width * factor, size.height * factor);
 
-  @:op(a + b) 
+  @:op(a + b)
   static inline function add(a:Size, b:Size)
     return new Size(a.width + b.width, a.height + b.height);
+
+  @:op(a == b) static inline function eq(a:Size, b:Size)
+    return !(a != b);
+
+  @:op(a != b) static inline function neq(a:Size, b:Size)
+    return a.width != b.width || a.height != b.height;
 
 }

@@ -95,6 +95,12 @@ abstract PanZoom(PanZoomData) {
     return new PanZoom(-(a * t.panX), -(a * t.panY), a);
   }
 
+  @:op(a == b) static inline function eq(a:PanZoom, b:PanZoom)
+    return !(a != b);
+
+  @:op(a != b) static inline function neq(a:PanZoom, b:PanZoom)
+    return a.panX != b.panX || a.panY != b.panY || a.zoom != b.zoom;
+
 }
 
 @:callable

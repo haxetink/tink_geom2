@@ -46,7 +46,13 @@ abstract Extent(Pair<Float, Float>) {
   public inline function interpolate(factor:Float)
     return this.a + factor * (this.b - this.a);
 
-  @:op(a == b) static function equals(a:Extent, b:Extent)
-    return a.start == b.start && a.end == b.end;
+  @:op(a == b) static inline function eq(a:Extent, b:Extent)
+    return !(a != b);
+
+  @:op(a != b) static function neq(a:Extent, b:Extent)
+    return a.start != b.start || a.end != b.end;
+
+  @:from static inline function ofRange(i:IntIterator)
+    return @:privateAccess new Extent(i.min, i.max);
 
 }

@@ -20,4 +20,17 @@ class PanZooms {
 
     return asserts.done();
   }
+
+  public function equality() {
+
+    var p = new PanZoom(rnd(), rnd(), rnd());
+
+    asserts.assert(p == p);
+    asserts.assert(p == p + new Point(0, 0));
+    asserts.assert(p != p + new Point(1, 0));
+    asserts.assert(p != p + new Point(0, 1));
+    asserts.assert(p == (p + new Point(20, 30)) - new Point(20, 30));
+
+    return asserts.done();
+  }
 }

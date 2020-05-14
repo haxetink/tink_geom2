@@ -57,5 +57,8 @@ abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float>
     return new Point(obj.x, obj.y);
 
   @:op(a == b) static inline function eq(a:Point, b:Point)
-    return a.x == b.x && a.y == b.y;
+    return !(a != b);
+
+  @:op(a != b) static inline function neq(a:Point, b:Point)
+    return a.x != b.x || a.y != b.y;
 }
