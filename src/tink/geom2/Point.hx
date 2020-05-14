@@ -42,11 +42,14 @@ abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float>
     return new Point(a.x - b.x, a.y - b.y);
 
   @:op(-p) static public inline function invert(p:Point)
-    return new Point( -p.x, -p.y);
+    return new Point(-p.x, -p.y);
 
   @:commutative @:op(p * f) static public inline function scale(p:Point, f:Float)
     return new Point(p.x * f, p.y * f);
 
   @:from static inline function ofObj(obj: { var x(default, null):Float; var y(default, null):Float; }):Point
     return new Point(obj.x, obj.y);
+
+  @:op(a == b) static inline function eq(a:Point, b:Point)
+    return a.x == b.x && a.y == b.y;
 }
