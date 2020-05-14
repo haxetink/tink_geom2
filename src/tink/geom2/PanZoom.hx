@@ -31,6 +31,28 @@ abstract PanZoom(PanZoomData) {
   public inline function new(panX, panY, zoom)
     this = new PanZoomData(panX, panY, zoom);
 
+  public inline function with(o:{ ?panX:Float, ?panY:Float, ?zoom:Float })
+    return new PanZoom(
+      switch o.panX {
+        case null: panX;
+        case v: v;
+      },
+      switch o.panY {
+        case null: panY;
+        case v: v;
+      },
+      switch o.zoom {
+        case null: zoom;
+        case v: v;
+      }
+    );
+
+  public function blend(that:PanZoom, ?method:BlendMethod)
+    return switch method {
+      case null: blend(that, .5);
+      case f: new PanZoom(f(this.panX, that.panX), f(this.panY, that.panY), f(this.zoom, that.zoom));
+    }
+
   @:commutative @:op(m * p) static public function transformPoint(t:PanZoom, p:Point)
     return new Point(t.zoom * p.x + t.panX, t.zoom * p.y + t.panY);
 
@@ -73,4 +95,10 @@ abstract PanZoom(PanZoomData) {
     return new PanZoom(-(a * t.panX), -(a * t.panY), a);
   }
 
+}
+
+@:callable
+abstract BlendMethod(Float->Float->Float) from Float->Float->Float {
+  @:from static inline function ofFloat(f:Float):BlendMethod
+    return function (a, b) return (a * (f - 1) + b * f) / (1 + f);
 }
