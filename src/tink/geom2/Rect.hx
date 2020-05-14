@@ -4,7 +4,7 @@ using tink.CoreApi;
 
 @:pure
 abstract Rect(Pair<Extent, Extent>) {
-  
+
   public var top(get, never):Float;
     inline function get_top()
       return vertical.start;
@@ -24,7 +24,7 @@ abstract Rect(Pair<Extent, Extent>) {
   public var width(get, never):Float;
     inline function get_width()
       return horizontal.size;
-      
+
   public var height(get, never):Float;
     inline function get_height()
       return vertical.size;
@@ -32,14 +32,31 @@ abstract Rect(Pair<Extent, Extent>) {
   public var horizontal(get, never):Extent;
     inline function get_horizontal()
       return this.a;
-      
+
   public var vertical(get, never):Extent;
     inline function get_vertical()
       return this.b;
-      
+
+
+  public var tr(get, never):Point;
+    inline function get_tr()
+      return new Point(right, top);
+
+  public var tl(get, never):Point;
+    inline function get_tl()
+      return new Point(left, top);
+
+  public var br(get, never):Point;
+    inline function get_br()
+      return new Point(right, bottom);
+
+  public var bl(get, never):Point;
+    inline function get_bl()
+      return new Point(left, bottom);
+
   public inline function new(horizontal, vertical)
     this = new Pair(horizontal, vertical);
-    
+
   public var size(get, never):Size;
     @:to inline function get_size()
       return new Size(width, height);
@@ -57,8 +74,8 @@ abstract Rect(Pair<Extent, Extent>) {
     }
 
   public inline function intersects(that:Rect)
-    return 
-      this != null && that != null 
+    return
+      this != null && that != null
       && horizontal.intersects(that.horizontal)
       && vertical.intersects(that.vertical);
 
@@ -68,20 +85,20 @@ abstract Rect(Pair<Extent, Extent>) {
       && horizontal.contains(that.horizontal)
       && vertical.contains(that.vertical);
 
-  public function expand(h:Float, v:Float) 
+  public function expand(h:Float, v:Float)
     return horizontal.expand(h) * vertical.expand(v);
-    
+
   @:from static public inline function ofJslike(r:Jslike)
     return new Rect(
       new Extent(r.left, r.right),
       new Extent(r.top, r.bottom)
     );
 
-  @:from static public inline function ofFlashlike(r:Flashlike) 
+  @:from static public inline function ofFlashlike(r:Flashlike)
     return new Rect(
-      new Extent(r.x,  r.x + r.width), 
+      new Extent(r.x,  r.x + r.width),
       new Extent(r.y, r.y + r.height)
-    );    
+    );
 
   @:to public inline function toString()
     return 'Rect(hor: $horizontal, ver: $vertical)';
