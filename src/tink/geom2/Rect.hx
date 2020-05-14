@@ -102,6 +102,9 @@ abstract Rect(Pair<Extent, Extent>) {
 
   @:to public inline function toString()
     return 'Rect(hor: $horizontal, ver: $vertical)';
+
+  @:op(a == b) static function eq(a:Rect, b:Rect)
+    return a.horizontal == b.horizontal && a.vertical == b.vertical;
 }
 
 private typedef Jslike = {
