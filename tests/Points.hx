@@ -1,10 +1,14 @@
+#if haxe4
+  import haxe.ds.ReadOnlyArray as Array;
+#end
+
 @:asserts
 class Points {
   public function new() {
 
   }
 
-  final grid = [for (x in -1...2)
+  static public final grid:Array<Array<Point>> = [for (x in -1...2)
     [for (y in -1...2)
       new Point(x, y)
     ]
@@ -69,4 +73,5 @@ class Points {
 
     return asserts.done();
   }
+
 }
