@@ -23,6 +23,9 @@ abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float>
 
   public inline function new(x, y) this = new Pair(x, y);
 
+  public function snap(unit = 1.0)
+    return new Point(Math.round(x / unit) * unit, Math.round(y / unit) * unit);
+
   public inline function normalize(l:Float = 1):Point
     return scale(this, l / length);
 
