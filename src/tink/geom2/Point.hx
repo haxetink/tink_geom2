@@ -27,7 +27,10 @@ abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float>
     return new Point(Math.round(x / unit) * unit, Math.round(y / unit) * unit);
 
   public inline function normalize(l:Float = 1):Point
-    return scale(this, l / length);
+    return switch length {
+      case 0: this;
+      case v: scale(this, l / v);
+    }
 
   public inline function dot(that:Point):Float
     return x * that.x + y * that.y;
