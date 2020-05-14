@@ -1,26 +1,38 @@
 package tink.geom2;
 
 private class ZoomPanData {
-  public var scale(default, null):Float;
-  public var tx(default, null):Float;
-  public var ty(default, null):Float;
+  public #if haxe4 final #else var #end zoom:Float;
+  public #if haxe4 final #else var #end panX:Float;
+  public #if haxe4 final #else var #end panY:Float;
 
-  public function new(scale, tx, ty) {
-    this.scale = scale;
-    this.tx = tx;
-    this.ty = ty;
+  public function new(zoom, panX, panY) {
+    this.zoom = zoom;
+    this.panX = panX;
+    this.panY = panY;
   }
 }
 
-@:forward
 abstract ZoomPan(ZoomPanData) {
+
+  public var zoom(get, never):Float;
+    inline function get_zoom()
+      return this.zoom;
+
+  public var panX(get, never):Float;
+    inline function get_panX()
+      return this.panX;
+
+  public var panY(get, never):Float;
+    inline function get_panY()
+      return this.panY;
+
   static public var ZERO(default, never):ZoomPan = 1.0;
 
-  public inline function new(scale, tx, ty)
-    this = new ZoomPanData(scale, tx, ty);
+  inline function new(zoom, panX, panY)
+    this = new ZoomPanData(zoom, panX, panY);
 
   @:commutative @:op(m * p) static public function transformPoint(t:ZoomPan, p:Point)
-    return new Point(t.scale * p.x + t.tx, t.scale * p.y + t.ty);
+    return new Point(t.zoom * p.x + t.panX, t.zoom * p.y + t.panY);
 
   @:op(m * f) static function scale(m:ZoomPan, f:Float) //TODO: all these ops are easy enough to inline instead of requiring a generic concat
     return m * (f:ZoomPan);
@@ -39,21 +51,26 @@ abstract ZoomPan(ZoomPanData) {
 
   @:op(m * n) static function concat(m:ZoomPan, n:ZoomPan)
     return new ZoomPan(
-      n.scale * m.scale,
-      n.scale * m.tx + n.tx,
-      n.scale * m.ty + n.ty
+      n.zoom * m.zoom,
+      n.zoom * m.panX + n.panX,
+      n.zoom * m.panY + n.panY
     );
 
   @:to public function toString()
-    return 'scale(${this.scale}) translate(${this.tx}px, ${this.ty}px)';
+    return 'translate(${panX}px, ${panY}px) scale($zoom)';
 
   @:to public inline function toMatrix():Matrix
-    return new Matrix(this.scale, 0, 0, this.scale, this.tx, this.ty);
+    return new Matrix(zoom, 0, 0, zoom, panX, panY);
 
-  @:from static public inline function zoom(f:Float)
+  @:from static public inline function zoomBy(f:Float)
     return new ZoomPan(f, 0, 0);
 
   @:from static public inline function pan(p:Point)
     return new ZoomPan(1, p.x, p.y);
+
+  @:op(!t) static public function invert(t:ZoomPan) {
+    var a = 1 / t.zoom;
+    return new ZoomPan(a, -(a * t.panX), -(a * t.panY));
+  }
 
 }
