@@ -1,5 +1,5 @@
 @:asserts
-class ZoomPans {
+class PanZooms {
   public function new() {
 
   }
@@ -10,8 +10,8 @@ class ZoomPans {
   public function concat() {
 
     for (i in 0...5) {
-      var t1 = new ZoomPan(rnd(), rnd(), rnd()),
-          t2 = new ZoomPan(rnd(), rnd(), rnd());
+      var t1 = new PanZoom(rnd(), rnd(), rnd()),
+          t2 = new PanZoom(rnd(), rnd(), rnd());
 
       for (row in Points.grid)
         for (p in row)

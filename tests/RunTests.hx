@@ -13,7 +13,7 @@ class RunTests {
       TestBatch.make(
         new Points(),
         new Extents(),
-        new ZoomPans()
+        new PanZooms()
       )
     ).handle(Runner.exit);
   }
