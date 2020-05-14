@@ -8,7 +8,7 @@ class Points {
 
   }
 
-  static public final grid:Array<Array<Point>> = [for (x in -1...2)
+  static public var grid(default, null):Array<Array<Point>> = [for (x in -1...2)
     [for (y in -1...2)
       new Point(x, y)
     ]
