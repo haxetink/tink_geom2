@@ -4,6 +4,9 @@ import tink.core.Pair;
 
 @:pure
 abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float> {
+
+  static public var ZERO(default, null) = new Point(0, 0);
+
   public var x(get, never):Float;
   public var y(get, never):Float;
   public var length(get, never):Float;
