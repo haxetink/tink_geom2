@@ -56,6 +56,9 @@ abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float>
   @:commutative @:op(p * f) static public inline function scale(p:Point, f:Float)
     return new Point(p.x * f, p.y * f);
 
+  @:op(p / f) static public inline function unscale(p:Point, f:Float)
+    return scale(1 / f);
+
   @:from static inline function ofObj(obj: { var x(default, null):Float; var y(default, null):Float; }):Point
     return new Point(obj.x, obj.y);
 
