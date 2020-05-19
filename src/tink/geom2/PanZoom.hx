@@ -47,14 +47,26 @@ abstract PanZoom(PanZoomData) {
       }
     );
 
+  public inline function transformX(x:Float)
+    return zoom * x + panX;
+
+  public inline function transformY(y:Float)
+    return zoom * y + panY;
+
   public function blend(that:PanZoom, ?method:BlendMethod)
     return switch method {
       case null: blend(that, .5);
       case f: new PanZoom(f(this.panX, that.panX), f(this.panY, that.panY), f(this.zoom, that.zoom));
     }
 
-  @:commutative @:op(m * p) static public function transformPoint(t:PanZoom, p:Point)
-    return new Point(t.zoom * p.x + t.panX, t.zoom * p.y + t.panY);
+  @:commutative @:op(t * p) inline function transformPoint(p:Point)
+    return new Point(transformX(p.x), transformY(p.y));
+
+  @:commutative @:op(t * p) function transformRect(r:Rect)
+    return new Rect(
+      new Extent(transformX(r.left), transformX(r.right)),
+      new Extent(transformY(r.top), transformY(r.bottom))
+    );
 
   @:op(m * f) static function scale(m:PanZoom, f:Float) //TODO: all these ops are easy enough to inline instead of requiring a generic concat
     return m * (f:PanZoom);
