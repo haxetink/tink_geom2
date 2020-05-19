@@ -17,6 +17,11 @@ abstract Size(Pair<Float, Float>) {
     inline function get_total()
       return width * height;
 
+  public var aspectRatio(get, never):Float;
+    inline function get_aspectRatio()
+      return width / height;
+
+
   public inline function new(width, height)
     this = new Pair(width, height);
 

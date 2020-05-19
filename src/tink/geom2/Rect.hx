@@ -37,6 +37,9 @@ abstract Rect(Pair<Extent, Extent>) {
     inline function get_vertical()
       return this.b;
 
+  public var aspectRatio(get, never):Float;
+    inline function get_aspectRatio()
+      return width / height;
 
   public var tr(get, never):Point;
     inline function get_tr()
