@@ -35,6 +35,19 @@ abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float>
       case v: scale(this, l / v);
     }
 
+  public function makeRect(size:Size)
+    return new Rect(
+      new Extent(x, x + size.width),
+      new Extent(y, y + size.height)
+    );
+
+  @:op(a...b) public function makeRectTo(p:Point)
+    return new Rect(
+      new Extent(x, p.x),
+      new Extent(y, p.y)
+    );
+
+
   public inline function dot(that:Point):Float
     return x * that.x + y * that.y;
 
