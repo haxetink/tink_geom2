@@ -2,6 +2,8 @@ package tink.geom2;
 
 import tink.core.Pair;
 
+@:jsonStringify((p:tink.geom2.Point) -> { x: p.x, y: p.y })
+@:jsonParse(o -> new tink.geom2.Point(o.x, o.y))
 @:pure
 abstract Point(Pair<Float, Float>) from Pair<Float, Float> to Pair<Float, Float> {
 

@@ -2,6 +2,8 @@ package tink.geom2;
 
 using tink.CoreApi;
 
+@:jsonStringify((s:tink.geom2.Size) -> { width: s.width, height: s.height })
+@:jsonParse(@:privateAccess tink.geom2.Size.ofObj)
 @:pure
 abstract Size(Pair<Float, Float>) {
 
@@ -45,5 +47,8 @@ abstract Size(Pair<Float, Float>) {
 
   @:op(a != b) static inline function neq(a:Size, b:Size)
     return a.width != b.width || a.height != b.height;
+
+  @:from static function ofObj(o:{ var width(default, null):Float; var height(default, null):Float; })
+    return new Size(o.width, o.height);
 
 }

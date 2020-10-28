@@ -2,6 +2,8 @@ package tink.geom2;
 
 using tink.CoreApi;
 
+@:jsonStringify((r:tink.geom2.Rect) -> { top: r.top, left: r.left, right: r.right, bottom: r.bottom })
+@:jsonParse(r -> new tink.geom2.Rect(new tink.geom2.Extent(r.left, r.right), new tink.geom2.Extent(r.top, r.bottom)))
 @:pure
 abstract Rect(Pair<Extent, Extent>) {
 
