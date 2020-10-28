@@ -16,4 +16,10 @@ package tink.geom2;
       case Vertical: new Rect(sidewards, normal);
       default: new Rect(normal, sidewards);
     }
+
+  public inline function point(normal, sidewards)
+    return switch (cast this:Dimension) {
+      case Vertical: new Point(sidewards, normal);
+      default: new Point(normal, sidewards);
+    }
 }

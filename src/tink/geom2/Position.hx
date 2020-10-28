@@ -1,11 +1,18 @@
 package tink.geom2;
 
 @:enum abstract Position(String) {
-  
+
   var Start = 'start';
   var End = 'end';
 
-  public inline function extent(start:Float, end:Float):Extent 
+  public var sign(get, never):Int;
+    inline function get_sign():Int
+      return if ((cast this) == Start) -1 else 1;
+
+  public inline function to01():Int
+    return if ((cast this) == Start) 0 else 1;
+
+  public inline function extent(start:Float, end:Float):Extent
     return switch (cast this:Position) {
       case End: new Extent(end, start);
       default: new Extent(start, end);
@@ -29,7 +36,7 @@ package tink.geom2;
       default: -delta;
     }
 
-  @:op(!a) 
+  @:op(!a)
   public inline function flip():Position
     return switch (cast this:Position) {
       case End: Start;
