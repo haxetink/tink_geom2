@@ -1,7 +1,7 @@
 package tink.geom2;
 
-@:enum abstract Side(String) {
-  
+@:enum abstract Side(String) to String {
+
   var Lefthand = 'lefthand';
   var Righthand = 'righthand';
   var Above = 'above';
