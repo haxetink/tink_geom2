@@ -84,6 +84,15 @@ abstract Rect(Pair<Extent, Extent>) {
       && horizontal.intersects(that.horizontal)
       && vertical.intersects(that.vertical);
 
+  @:op(a & b)
+  public inline function intersect(that:Rect)
+    return
+      switch [(cast this:Rect), that] {
+        case [v, null] | [null, v]: v;
+        case [a, b]:
+          new Rect(a.horizontal & b.horizontal, a.vertical & b.vertical);
+      }
+
   public inline function contains(that:Rect)
     return
       this != null && that != null
