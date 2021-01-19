@@ -1,8 +1,11 @@
 package tink.geom2;
 
 @:enum abstract Dimension(String) {
-  var Vertical = 'vertical';
   var Horizontal = 'horizontal';
+  var Vertical = 'vertical';
+
+
+  static public final ALL:#if haxe4 haxe.ds.ReadOnlyArray #else Iterable #end<Dimension> = [Horizontal, Vertical];
 
   @:op(!a)
   public inline function flip():Dimension
